@@ -16,7 +16,7 @@
  * 7) 20
  * 8) prices = new double[50];
  * 9) index 24 out of bounds for length
- *
+ * 17) the earliest busy hour is shown.
  */
 public class LogAnalyzer
 {
@@ -43,7 +43,8 @@ public class LogAnalyzer
     for(index = 0; index < marks.length; index++) {
     if(marks[index] > mean) {
     System.out.println(marks[index]);
-    } } }
+    } } 
+    }
 
     /**
      * Analyze the hourly access data from the log file.
@@ -56,6 +57,38 @@ public class LogAnalyzer
             hourCounts[hour]++;
         }
     }
+    
+       public int numberOfaccesses(){ //Ex 13
+        int total=0;
+       for(int i=0;i<hourCounts.length;i++){
+          total= total +hourCounts[i]; 
+       }
+      return total;  
+    }
+    
+    public int busiestHour(){ //Ex 15: a for loop is better in this case
+                              //because I need the index (hour) as a return
+        int bHour=0;
+        
+        for(int i=0;i<hourCounts.length;i++){
+        if(hourCounts[i]>hourCounts[bHour]){
+        bHour=i;    
+        }
+        }
+        
+        return bHour;
+    }    
+    
+    public int quietestHour(){ // Ex 16
+        int qHour=0;       
+        for(int i=0;i<hourCounts.length;i++){
+        if((hourCounts[i]<=hourCounts[qHour])&& !(hourCounts[i]==0)){
+        qHour=i;    
+        }
+        }
+        
+        return qHour;
+    }    
 
     /**
      * Print the hourly counts.
