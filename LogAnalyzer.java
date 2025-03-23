@@ -28,13 +28,13 @@ public class LogAnalyzer
     /**
      * Create an object to analyze hourly web accesses.
      */
-    public LogAnalyzer(String filename) //Ex 12
+    public LogAnalyzer(/*String filename*/) //Ex 12
     { 
         // Create the array object to hold the hourly
         // access counts.
         hourCounts = new int[24];
         // Create the reader to obtain the data.
-        reader = new LogfileReader(filename);
+        reader = new LogfileReader(/*filename*/);
     }
     
     public void printGreater(double mean) { //Ex 11
@@ -43,7 +43,8 @@ public class LogAnalyzer
     for(index = 0; index < marks.length; index++) {
     if(marks[index] > mean) {
     System.out.println(marks[index]);
-    } } 
+    } 
+    } 
     }
 
     /**
@@ -77,7 +78,17 @@ public class LogAnalyzer
         }
         
         return bHour;
-    }    
+    }   
+    
+    public int busiestTwoHourPeriod(){ //Ex 18
+        int fHour=0;
+     for(int i=0;i<hourCounts.length-1;i++){
+         if((hourCounts[i]+hourCounts[i+1])>(hourCounts[fHour]+hourCounts[fHour+1])){
+        fHour=i;    
+        }           
+    }
+        return fHour;
+    }
     
     public int quietestHour(){ // Ex 16
         int qHour=0;       
